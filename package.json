@@ -1,0 +1,27 @@
+{
+  "name": "tarim",
+  "version": "0.0.0",
+  "description": "a template engine, using Lodash's template syntax and supporting including other templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.test.js"
+  },
+  "keywords": [
+    "template",
+    "lodash"
+  ],
+  "author": "Ruan Yifeng",
+  "homepage": "https://github.com/ruanyf/tarim",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruanyf/tarim.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^4.0.2",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "tape": "^4.8.0"
+  }
+}
