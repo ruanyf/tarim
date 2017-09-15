@@ -72,16 +72,18 @@ A template could be included into another template.
 <% include templateFileName %>
 ```
 
-The above line will be replaced by the content of file `templateFileName.template`. Attention, the `include` line should occupy its own line, otherwise will throws an error.
+The above line will be replaced by the content of file `templateFileName.template`.
 
 The default path of included template files is the current working directory `process.cwd()`, and the default extension of template files is `.template`. You could customize them by setting `Option.includePath` and `Option.includeExt`.
+
+`Option.includePath` is to specify the location of a directory of template files relative to `process.cwd()` directory. It could also be an absolute path.
 
 ```javascript
 const tmplEngine = require('tarim');
 const str = '<% include data %>';
 const tmpl = tmplEngine(str, {
   includePath: './templates',
-  includeExt: '.tmpl',
+  includeExt: '.template',
 });
 ```
 
