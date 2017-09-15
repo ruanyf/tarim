@@ -69,7 +69,7 @@ test('template function\'s source', function (t) {
 });
 
 test('include test', function (t) {
-  t.plan(7);
+  t.plan(8);
 
   const templateOption = {
     includePath: './test/fixture',
@@ -115,6 +115,12 @@ test('include test', function (t) {
   const str7 = 'hello\n<% include data %>';
   t.equal(
     template(str7, templateOption)({ user: 'Trump' }),
+    'hello\nTrump\n'
+  );
+
+  const str8 = 'hello\n<% include data %>';
+  t.equal(
+    template(str8, { includePath: path.resolve(process.cwd(), 'test', 'fixture')})({ user: 'Trump' }),
     'hello\nTrump\n'
   );
 });
