@@ -2,6 +2,7 @@
 
 var test = require('tape');
 var template = require('../index');
+const path = require('path');
 
 test('template basic tests', function (t) {
   t.plan(9);
@@ -82,9 +83,10 @@ test('include test', function (t) {
   );
 
   const str2 = 'hello world<% include simple %>';
-  t.throws(function () {
-    template(str2, templateOption)
-  }, /Unexpected identifier/);
+  t.equal(
+    template(str2, templateOption)(),
+    'hello worldhello world\n'
+  );
 
   const str3 = 'hello world\n<% includes simple %>';
   t.equal(
@@ -115,4 +117,17 @@ test('include test', function (t) {
     template(str7, templateOption)({ user: 'Trump' }),
     'hello\nTrump\n'
   );
+});
+
+test('default option', function (t) {
+  t.plan(1);
+
+  const str1 = 'hello\n<% include data %>';
+  const originPath = process.cwd();
+  process.chdir(path.resolve(originPath, 'test', 'fixture'));
+  t.equal(
+    template(str1)({ user: 'Trump' }),
+    'hello\nTrump\n'
+  );
+  process.chdir(originPath);
 });

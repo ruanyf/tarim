@@ -2,13 +2,8 @@ const template = require('lodash/template');
 const path = require('path');
 const fs = require('fs-extra');
 
-const OPTION_DEFAULT = {
-  includePath: process.cwd(),
-  includeExt: '.template',
-};
-
 function includeHandler(str, templateOption) {
-  const reg = /^\s*<%\s+includes?\s+(.*?)\s+%>/mg;
+  const reg = /<%\s+includes?\s+(.*?)\s+%>/mg;
   let templateContent = str;
   let isMatched = false;
 
@@ -17,7 +12,6 @@ function includeHandler(str, templateOption) {
     if (!match) return templateContent;
 
     const templatePath = path.resolve(
-      process.cwd(),
       templateOption.includePath,
       match[1] + templateOption.includeExt,
     );
@@ -29,6 +23,13 @@ function includeHandler(str, templateOption) {
 }
 
 function templateEngine(str, option) {
+  const OPTION_DEFAULT = {
+    includePath: process.cwd(),
+    includeExt: '.template',
+  };
+  if (option && option.includePath && option.includePath.substr(0, 1) !== '/') {
+    option.includePath = path.resolve(process.cwd(), option.includePath);
+  }
   const templateOption = Object.assign({}, OPTION_DEFAULT, option);
   let templateContent = str;
   templateContent = includeHandler(templateContent, templateOption);
