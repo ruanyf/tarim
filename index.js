@@ -13,7 +13,7 @@ function includeHandler(str, templateOption) {
 
     const templatePath = path.resolve(
       templateOption.includePath,
-      match[1] + templateOption.includeExt,
+      match[1] + templateOption.includeExt
     );
 
     let includeContent = fs.readFileSync(templatePath, 'utf8');
