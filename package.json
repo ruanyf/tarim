@@ -18,10 +18,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "fs-extra": "^4.0.2",
-    "lodash": "^4.17.4"
+    "fs-extra": "8.x",
+    "lodash": "^4.17.14"
   },
   "devDependencies": {
-    "tape": "^4.8.0"
+    "tape": "^4.11.0"
   }
 }
