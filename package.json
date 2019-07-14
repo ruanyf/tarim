@@ -1,6 +1,6 @@
 {
   "name": "tarim",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "a template engine, using Lodash's template syntax and supporting including other templates",
   "main": "index.js",
   "scripts": {
